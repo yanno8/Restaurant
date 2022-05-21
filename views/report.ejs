@@ -1,0 +1,42 @@
+<link rel="stylesheet" href="/css/report.css">
+    <title>Report</title>
+<body>
+	<form class="reports">
+		<h4 class="reportsHeader">Restaurant Report</h4>
+		<select id="inventory" name="inventory" class="form-control">
+          <option>Daily Report</option>
+          <option>Monthly Report</option>
+        </select><br> 
+		<table>
+			<tr>
+				<th>Booking Name</th>
+				<th>Numbers</th>
+			</tr>
+			<tr>
+				<td>Booking Table</td>
+				<td><%= table[0].number %></td>
+			</tr>
+			<tr>
+				<td>Booking Food</td>
+				<td><%= food[0].number %></td>
+			</tr>
+			<tr>
+				<td>Booking Birthday Event</td>
+				<td><%= birthday[0].number %></td>
+			</tr>
+			<tr>
+				<td>Booking Wedding Event</td>
+				<td><%= wedding[0].number %></td>
+			</tr>
+			<tr>
+				<td>Booking Businees Dinner Event</td>
+				<td><%= business[0].number %></td>
+			</tr>
+			<tr>
+				<th>Total</th>
+				<td><%= booking[0].number %></td>
+			</tr>
+		</table>	
+		 <br><button type="submit" class="blueButton">PRINT</button>
+	</form>
+</body>

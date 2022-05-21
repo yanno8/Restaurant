@@ -1,0 +1,149 @@
+ <title>Dashboard</title>
+ 
+ 
+ <!--begin::Content-->
+
+<%- include('partials/messages') -%>
+
+    <% if(currentUser) { %>
+    <% if(currentUser.role == "super admin" || currentUser.role == "admin" ) { %>
+    <div class="content fs-6 d-flex flex-column flex-column-fluid" id="kt_content">
+        <!--begin::Toolbar-->
+        <div class="toolbar" id="kt_toolbar">
+            <div class="container-fluid d-flex flex-stack flex-wrap flex-sm-nowrap">
+                <!--begin::Info-->
+                <div class="d-flex flex-column align-items-start justify-content-center flex-wrap me-2">
+                    <!--begin::Title-->
+                    <h1 class="text-dark fw-bolder my-1 fs-2">Dashboard 
+                        <small class="text-muted fs-6 fw-normal ms-1"></small>
+                    </h1>
+                    <!--end::Title-->
+                </div>
+                <!--end::Info-->
+            </div>
+        </div>
+        <!--end::Toolbar-->
+        <!--begin::Post-->
+        <div class="post fs-6 d-flex flex-column-fluid" id="kt_post">
+            <!--begin::Container-->
+            <div class="container-xxl">
+                <!--begin::Row-->
+                <div class="row g-xl-8">
+                    <!--begin::Col-->
+                    <div class="col-xxl-8">
+                        <!-- begin::Row -->
+                        <div class="row g-xl-8 justify-content-center">
+                            <!-- begin::user card -->
+                            <div class="card card-1 p-3" id="dashboardCard">
+                                <i class="fas fa-users text-black fs-2x float-end position-absolute"></i>
+                                <h3 class="ml-5">Users</h3>
+                                <div class="separator"></div>
+                                <br>
+                                <div class="float-end">
+                                    <b> <%= userCount %> </b>
+                                </div>
+                            </div>
+                            <!-- end::user card -->
+                            <!-- begin::publication card -->
+                            <div class="card card-1 p-3" id="dashboardCard">
+                                <i class="fas fa-newspaper text-black fs-2x float-end position-absolute"></i>
+                                <h3 class="ml-5">Bookings</h3>
+                                <div class="separator"></div>
+                                <br>
+                                <div class="float-end">
+                                    <b> <%= bookingCount %> </b>
+                                </div>
+                            </div>
+                            <!-- end::publication card -->
+                            <!-- begin::group card -->
+                            <div class="card card-1 p-3" id="dashboardCard">
+                                <i class="fas fa-users text-black fs-2x float-end position-absolute"></i>
+                                <h3 class="ml-5">Employees</h3>
+                                <div class="separator"></div>
+                                <br>
+                                <div class="float-end">
+                                    <b> <%= employeeCount %> </b>
+                                </div>
+                            </div>
+                            <!-- end::group card -->
+                        </div>
+                        <!-- end::Row -->
+                        <!-- begin::Row -->
+                        <div class="m-5">
+                            <figure class="highcharts-figure">
+                                <div id="courbe_evolution"></div>
+                            </figure>
+                        </div>
+                        <!-- end::Row -->
+                    </div>
+                    <!--end::Col-->
+                </div>
+                <!--end::Row-->
+            </div>
+            <!--end::Container-->
+        </div>
+        <!--end::Post-->
+    </div>
+    <!--end::Content-->
+    <% } %> 
+    <% if(currentUser.role == "customer" ) { %>
+        <div class="content fs-6 d-flex flex-column flex-column-fluid" id="kt_content">
+            <!--begin::Toolbar-->
+            <div class="toolbar" id="kt_toolbar">
+                <div class="container-fluid d-flex flex-stack flex-wrap flex-sm-nowrap">
+                    <!--begin::Info-->
+                    <div class="d-flex flex-column align-items-start justify-content-center flex-wrap me-2">
+                        <!--begin::Title-->
+                        <h1 class="text-dark fw-bolder my-1 fs-2">Dashboard 
+                            <small class="text-muted fs-6 fw-normal ms-1"></small>
+                        </h1>
+                        <!--end::Title-->
+                    </div>
+                    <!--end::Info-->
+                </div>
+            </div>
+            <!--end::Toolbar-->
+            <!--begin::Post-->
+            <div class="post fs-6 d-flex flex-column-fluid" id="kt_post">
+                <!--begin::Container-->
+                <div class="container-xxl">
+                    <!--begin::Row-->
+                    <div class="row g-xl-8">
+                        <!--begin::Col-->
+                        <div class="col-xxl-8">
+                            <!-- begin::Row -->
+                            <div class="row g-xl-8 justify-content-center">
+                                <!-- begin::publication card -->
+                                <div class="card card-1 p-3" id="dashboardCard">
+                                    <i class="fas fa-newspaper text-black fs-2x float-end position-absolute"></i>
+                                    <h3 class="ml-5">Bookings</h3>
+                                    <div class="separator"></div>
+                                    <br>
+                                    <div class="float-end">
+                                        <b> <%= bookingCount %> </b>
+                                    </div>
+                                </div>
+                                <!-- end::publication card -->
+                            </div>
+                            <!-- end::Row -->
+                            <!-- begin::Row -->
+                            <div class="m-5">
+                                <figure class="highcharts-figure">
+                                    <div id="courbe_evolution"></div>
+                                </figure>
+                            </div>
+                            <!-- end::Row -->
+                        </div>
+                        <!--end::Col-->
+                    </div>
+                    <!--end::Row-->
+                </div>
+                <!--end::Container-->
+            </div>
+            <!--end::Post-->
+        </div>
+        <!--end::Content--> 
+    <% } %> 
+    <% } %> 
+
+    

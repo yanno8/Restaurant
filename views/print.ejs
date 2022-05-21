@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="/css/report.css">
+    <title>Bill</title>
+<body>
+	<form class="reports">
+		<h4 class="reportsHeader">Restaurant Bill</h4>
+		<div id="inventory" name="inventory" class="form-control">
+			<%= print.firstName %> <%= print.lastName %>
+		</div> <br>
+		<table>
+			<tr>
+				<th>Products</th>
+				<th>Name Products</th>
+				<th>Numbers</th>
+				<th>Total</th>
+			</tr>
+			<tr>
+				<td>Foods</td>
+				<td><%= print.food %></td>
+				<td><%= print.total %></td>
+			</tr>
+			<tr>
+				<td>Drinks</td>
+				<td><%= print.drink %></td>
+				<td><%= print.total %></td>
+			</tr>
+		</table>	
+		 <br><button type="submit" class="blueButton">PRINT</button>
+	</form>
+</body>

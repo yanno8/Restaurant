@@ -1,0 +1,91 @@
+    <title>Booking Registration</title>
+
+<div class="container mt-5 w-50">
+    <img src="/logo/image.png" width="10" height="170"
+        style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+    <h1 class="my-3 text-center">Booking Registration</h1>
+    <center><%- include('partials/messages') %></center>
+        <form action="/create/booking" method="POST">
+            <div class="container px-0">
+                <div class="fv-row mb-7">
+                    <label class="form-label fw-bolder text-dark fs-6">Title</label>
+                    <select name="title" class="form-control">
+                        <option value=""></option>
+                        <option value="M.">M.</option>
+                        <option value="Mme">Mme</option>
+                        <option value="Mlle">Mlle</option>
+                    </select>
+                </div>
+            </div>
+            <div class="fv-row mb-7">
+                <label class="form-label fw-bolder text-dark fs-6">First Name</label>
+                <input class="form-control " type="text" placeholder="" name="firstName" autocomplete="off" />
+            </div>
+            <div class="fv-row mb-7">
+                <label class="form-label fw-bolder text-dark fs-6">Last Name</label>
+                <input class="form-control " type="text" placeholder="" name="lastName" autocomplete="off" />
+            </div>
+            <div class="fv-row mb-7">
+                <label class="form-label fw-bolder text-dark fs-6">Email</label>
+                <input class="form-control " type="email" placeholder="" name="email" autocomplete="off"/>
+            </div>
+            <div class="fv-row mb-7">
+                <label class="form-label fw-bolder text-dark fs-6">Phone</label>
+                <input class="form-control " type="text" placeholder="" name="phone" autocomplete="off" inputmode="numeric" />
+            </div>
+            <div class="fv-row mb-7">
+                <label class="form-label fw-bolder text-dark fs-6">Address</label>
+                <input class="form-control " type="text" placeholder="" name="address" autocomplete="off" />
+            </div>
+            <div class="fv-row mb-7">
+                <label class="form-label fw-bolder text-dark fs-6">City</label>
+                <input class="form-control " type="text" placeholder="" name="city" autocomplete="off" />
+            </div>
+            <div class="fv-row mb-7">
+                <label class="form-label fw-bolder text-dark fs-6">Number</label>
+                <input class="form-control " type="text" placeholder="" name="number" autocomplete="off" />
+            </div>
+            <div class="fv-row mb-7">
+            <label class="form-label fw-bolder text-dark fs-6">Food</label>
+            <select name="food" class="form-control ">
+                <option class="text-muted" > </option>
+                <% food.forEach((foods) => { %>
+                    <option value="<%= foods.name %> "><%= foods.name %> </option>
+                <% }) %>
+            </select>
+            </div>
+            <div class="fv-row mb-7">
+            <label class="form-label fw-bolder text-dark fs-6">Drink</label>
+            <select name="drink" class="form-control ">
+                <option class="text-muted"> </option>
+                <% drink.forEach((drinks) => { %>
+                    <option value="<%= drinks.name %> "><%= drinks.name %> </option>
+                <% }) %>
+            </select>
+            </div>
+            <div class="fv-row mb-7">
+                <label class="form-label fw-bolder text-dark fs-6">Date</label>
+                <input class="form-control " type="date" placeholder="" name="date" autocomplete="off" />
+            </div>
+            <div class="fv-row mb-7">
+                <label class="form-label fw-bolder text-dark fs-6">Time</label>
+                <input class="form-control " type="time" placeholder="" name="time" autocomplete="off" />
+            </div>
+            <div class="fv-row mb-7">
+                <label class="form-label fw-bolder text-dark fs-6">Booking Type</label>
+                <select name="type" class="form-control">
+                    <option value=""></option>
+                    <option value="Booking Table">Booking Table</option>
+                    <option value="Booking Food">Booking Food</option>
+                    <option value="Booking Birthday Event">Booking Birthday Event</option>
+                    <option value="Booking Wedding Event">Booking Wedding Event</option>
+                    <option value="Booking Business Dinner Event">Booking Businees Dinner Event</option>
+                </select>
+            </div><br>
+            <div class="text-center">
+                <button type="submit" class="btn btn-lg btn-primary">
+                        Submit
+                    </button>
+            </div>
+        </form>
+</div>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/plat.css">
+    <script src="/js/plat.js"></script>
+  <link rel="shortcut icon" href="/logo/image.png" />
+    <title>Fast Food Menu</title>
+</head>
+
+<body>
+  <div class style="
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 5%;">
+  <% menu.forEach((menu)=> { %>
+    <div class="container">
+      <div class="liste-atelier2">
+        <!-- DEBUT ITEM -->
+        <div class="item">
+          <!-- DETAIL ATELIER -->
+          <div class="detail">
+            <div class="photo" style="text-align: left;"><img alt="" src=<%= menu.avatar %> style="float: none;" /></div>
+            <div class="text">
+              <h2><%= menu.name %></h2>
+              <span class="duree">Time : <%= menu.time %></span>
+              <p class="desc-ate"><%= menu.description %></p>
+            </div>
+            <div class="btn-next"><%= menu.price %> FCFA</div>
+          </div>
+          <!-- FIN DETAIL ATELIER -->>
+        </div>
+        <!-- FIN ITEM -->
+      </div>
+    </div>
+  <% }) %>
+  </div>
+</body>
+
+</html>

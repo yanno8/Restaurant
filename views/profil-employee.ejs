@@ -1,0 +1,361 @@
+<title>Profile Employee</title>
+
+<center><%- include('partials/messages') %></center>
+
+<!--begin::Content-->
+<div class="content fs-6 d-flex flex-column flex-column-fluid" id="kt_content">
+    <!--begin::Toolbar-->
+    <div class="toolbar" id="kt_toolbar">
+        <div class="container-fluid d-flex flex-stack flex-wrap flex-sm-nowrap">
+            <!--begin::Info-->
+            <div class="d-flex flex-column align-items-start justify-content-center flex-wrap me-2">
+                <!--begin::Title-->
+                <h1 class="text-dark fw-bolder my-1 fs-2">Profile</h1>
+                <!--end::Title-->
+            </div>
+            <!--end::Info-->
+        </div>
+    </div>
+    <!--end::Toolbar-->
+    <!--begin::Post-->
+    <div class="post fs-6 d-flex flex-column-fluid" id="kt_post">
+        <!--begin::Container-->
+        <div class="container-xxl">
+            <!--begin::Layout-->
+            <div class="d-flex flex-column flex-xl-row">
+                <!--begin::Sidebar-->
+                <div class="flex-column flex-lg-row-auto w-00 w-xl-850px mb-10">
+                    <!--begin::Card-->
+                    <div class="card mb-5 mb-xl-8">
+                        <!--begin::Card body-->
+                        <div class="card-body">
+                            <% if(currentUser.role == "super admin" && user.role != "super admin") { %>
+                                <div
+                                    class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-bold mb-8 justify-content-end">
+                                    <form style="display: inline;" action="/employee/delete/<%= user.id %>?_method=DELETE"
+                                        method="POST" class="btn btn-danger ps-7 float-right">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <button style="border: none; background: inherit;" type="submit"
+                                            class="menu-link px-3 text-white fa-1x"
+                                            data-kt-users-table-filter="delete_row">Delete
+                                        </button>
+                                    </form>
+                                </div>
+                                <% } %>
+                                    <!--begin::Summary-->
+                                    <!--begin::User Info-->
+                                    <div class="d-flex flex-center flex-column py-0">
+                                        <!--begin::Avatar-->
+                                        <div class="symbol symbol-150px symbol-circle mb-7">
+                                            <img src="\pictures\<%= user.avatar %>" alt="image" />
+                                        </div>
+                                        <!--end::Avatar-->
+                                        <!--begin::Name-->
+                                        <div class="fs-1 text-gray-800 text-hover-primary fw-bolder mb-3">
+                                            <%= user.firstName + " " + user.lastName %>
+                                        </div>
+                                        <!--end::Name-->
+                                        <!--begin::Position-->
+                                        <div class="mb-9">
+                                            <!--begin::Badge-->
+                                            <div class="badge badge-lg badge-light-primary d-inline fs-3">
+                                                Deliver
+                                            </div>
+                                            <!--begin::Badge-->
+                                        </div>
+                                        <!--end::Position-->
+                                    </div>
+                                    <!--end::User Info-->
+                                    <!--end::Summary-->
+                                    <div class="separator"></div>
+                                    <% if(currentUser.id == user.id || currentUser.role == "super admin" ) { %>
+                                        <div class="mt-5">
+                                            <span data-bs-toggle="tooltip" data-bs-trigger="hover">
+                                                <a href="#" class="btn btn-sm text-white fs-6 float-end"
+                                                    style="background: #225e41;" data-bs-toggle="modal"
+                                                    data-bs-target="#kt_modal_update_details">Edit</a>
+                                            </span>
+                                        </div>
+                                        <% } %>
+                                            <!--begin::Details content-->
+                                            <div id="kt_user_view_details" class="collapse show">
+                                                <div class="pb-5 fs-6">
+                                                    <!--begin::Details item-->
+                                                    <div class="fw-bolder mt-5">Email</div>
+                                                    <div class="text-gray-600">
+                                                        <%= user.email %>
+                                                    </div>
+                                                    <!--begin::Details item-->
+                                                    <!--begin::Details item-->
+                                                    <div class="fw-bolder mt-5">Birthday</div>
+                                                    <div class="text-gray-600">
+                                                        <%= user.birthday %>
+                                                    </div>
+                                                    <!--begin::Details item-->
+                                                    <!--begin::Details item-->
+                                                    <div class="fw-bolder mt-5">Birthday Place</div>
+                                                    <div class="text-gray-600">
+                                                        <%= user.birthdayPlace %>
+                                                    </div>
+                                                    <!--begin::Details item-->
+                                                    <!--begin::Details item-->
+                                                    <div class="fw-bolder mt-5">Phone</div>
+                                                    <div class="text-gray-600">
+                                                        <%= user.phone %>
+                                                    </div>
+                                                    <!--begin::Details item-->
+                                                    <!--begin::Details item-->
+                                                    <div class="fw-bolder mt-5">Gender</div>
+                                                    <div class="text-gray-600">
+                                                        <%= user.gender %>
+                                                    </div>
+                                                    <!--begin::Details item-->
+                                                    <!--begin::Details item-->
+                                                    <div class="fw-bolder mt-5">Salary</div>
+                                                    <div class="text-gray-600">
+                                                        <%= user.salary %>
+                                                    </div>
+                                                    <!--begin::Details item-->
+                                                    <!--begin::Details item-->
+                                                    <div class="fw-bolder mt-5">Address</div>
+                                                    <div class="text-gray-600">
+                                                        <%= user.address %>
+                                                    </div>
+                                            <!--end::Details content-->
+                        </div>
+                        <!--end::Card body-->
+                    </div>
+                    <!--end::Card-->
+                </div>
+                <!--end::Sidebar-->
+            </div>
+            <!--end::Layout-->
+            <!--begin::Modals-->
+            <!--begin::Modal - Update user details-->
+            <div class="modal" id="kt_modal_update_details" tabindex="-1" aria-hidden="true">
+                <!--begin::Modal dialog-->
+                <div class="modal-dialog modal-dialog-centered mw-650px">
+                    <!--begin::Modal content-->
+                    <div class="modal-content">
+                        <!--begin::Form-->
+                        <form class="form" action="/employee/profile/<%=user.id%>?_method=PUT" enctype="multipart/form-data" method="POST" id="kt_modal_update_user_form">
+                            <input type="hidden" name="_method" value="PUT">
+                            <!--begin::Modal header-->
+                            <div class="modal-header" id="kt_modal_update_user_header">
+                                <!--begin::Modal title-->
+                                <h2 class="fs-2 fw-bolder">Update Details</h2>
+                                <!--end::Modal title-->
+                                <!--begin::Close-->
+                                <div class="btn btn-icon btn-sm btn-active-icon-primary"
+                                    data-kt-users-modal-action="close">
+                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                                    <span class="svg-icon svg-icon-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none">
+                                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
+                                                transform="rotate(-45 6 17.3137)" fill="black" />
+                                            <rect x="7.41422" y="6" width="16" height="2" rx="1"
+                                                transform="rotate(45 7.41422 6)" fill="black" />
+                                        </svg>
+                                    </span>
+                                    <!--end::Svg Icon-->
+                                </div>
+                                <!--end::Close-->
+                            </div>
+                            <!--end::Modal header-->
+                            <!--begin::Modal body-->
+                            <div class="modal-body py-10 px-lg-17">
+                                <!--begin::Scroll-->
+                                <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_update_user_scroll"
+                                    data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}"
+                                    data-kt-scroll-max-height="auto"
+                                    data-kt-scroll-dependencies="#kt_modal_update_user_header"
+                                    data-kt-scroll-wrappers="#kt_modal_update_user_scroll"
+                                    data-kt-scroll-offset="300px">
+                                    <!--begin::User toggle-->
+                                    <div class="fw-boldest fs-3 rotate collapsible mb-7">Informations 
+                                    </div>
+                                    <!--end::User toggle-->
+                                    <!--begin::User form-->
+                                    <div id="kt_modal_update_user_user_info" class="collapse show">
+                                        <!--begin::Input group-->
+                                        <div class="mb-7">
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-7">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-bold mb-2">Fisrt Name</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="text" class="form-control form-control-solid" placeholder=""
+                                                name="firstName" value="<%= user.firstName %>" />
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-7">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-bold mb-2">Last Name</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="text" class="form-control form-control-solid" placeholder=""
+                                                name="lastName" value="<%= user.lastName %>" />
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-7">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-bold mb-2">
+                                                <span>Email</span>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="email" class="form-control form-control-solid" placeholder=""
+                                                name="email" value="<%= user.email %>" />
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-7">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-bold mb-2">Phone</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="text" class="form-control form-control-solid" placeholder=""
+                                                name="phone" value="<%= user.phone %>" />
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-7">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-bold mb-2">Birthday</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="date" class="form-control form-control-solid" placeholder=""
+                                                name="birthday" value="<%= user.birthday %>" />
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-7">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-bold mb-2">Birthday Place</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="text" class="form-control form-control-solid" placeholder=""
+                                                name="birthdayPlace" value="<%= user.birthdayPlace %>" />
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-7">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-bold mb-2">Salary</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="text" class="form-control form-control-solid" placeholder=""
+                                                name="salary" value="<%= user.salary %>" />
+                                            <!--end::Input-->
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-7">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-bold mb-2">Address</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="text" class="form-control form-control-solid" placeholder=""
+                                                name="address" value="<%= user.address %>" />
+                                            <!--end::Input-->
+                                        </div>
+                                        </div>
+                                        <!--end::Input group-->
+                                    </div>
+                                    <!--end::User form-->
+                                </div>
+                                <!--end::Scroll-->
+                            </div>
+                            <!--end::Modal body-->
+                            <!--begin::Modal footer-->
+                            <div class="modal-footer flex-center">
+                                <!--begin::Button-->
+                                <button type="reset" class="btn btn-light me-3"
+                                    data-kt-users-modal-action="cancel">Cancel</button>
+                                <!--end::Button-->
+                                <!--begin::Button-->
+                                <button type="submit" class="btn btn-primary" >
+                                    Submit
+                                </button>
+                                <!--end::Button-->
+                            </div>
+                            <!--end::Modal footer-->
+                        </form>
+                        <!--end::Form-->
+                    </div>
+                </div>
+            </div>
+            <!--end::Modal - Update user details-->
+            <!-- begin:: Modal - Confirm delete -->
+            <div class="modal" id="kt_modal_confirm_delete" tabindex="-1" aria-hidden="true">
+                <!--begin::Modal dialog-->
+                <div class="modal-dialog modal-dialog-centered mw-500px">
+                    <!--begin::Modal content-->
+                    <div class="modal-content">
+                        <!--begin::Form-->
+                        <form class="form" action="/employee/delete/<%=user.id%>?_method=DELETE" enctype="multipart/form-data" method="POST" id="kt_modal_update_user_form">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <!--begin::Modal header-->
+                            <div class="modal-header" id="kt_modal_update_user_header">
+                                <!--begin::Modal title-->
+                                <h2 class="fs-2 fw-bolder">Delete user</h2>
+                                <!--end::Modal title-->
+                                <!--begin::Close-->
+                                <!-- <div class="btn btn-icon btn-sm btn-active-icon-primary"
+                                    data-kt-users-modal-action="close"> -->
+                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                                    <!-- <span class="svg-icon svg-icon-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none">
+                                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
+                                                transform="rotate(-45 6 17.3137)" fill="black" />
+                                            <rect x="7.41422" y="6" width="16" height="2" rx="1"
+                                                transform="rotate(45 7.41422 6)" fill="black" />
+                                        </svg>
+                                    </span> -->
+                                    <!--end::Svg Icon-->
+                                <!-- </div> -->
+                                <!--end::Close-->
+                            </div>
+                            <!--end::Modal header-->
+                            <!--begin::Modal body-->
+                            <div class="modal-body py-10 px-lg-17">
+                                <h4>Do you really want to delete this user ?</h4>
+                            </div>
+                            <!--end::Modal body-->
+                            <!--begin::Modal footer-->
+                            <div class="modal-footer flex-center">
+                                <!--begin::Button-->
+                                <button type="reset" class="btn btn-light me-3" 
+                                    data-kt-users-modal-action="cancel">No</button>
+                                <!--end::Button-->
+                                <!--begin::Button-->
+                                <button type="submit" class="btn btn-danger" >
+                                    Yes 
+                                </button>
+                                <!--end::Button-->
+                            </div>
+                            <!--end::Modal footer-->
+                        </form>
+                        <!--end::Form-->
+                    </div>
+                </div>
+                <!-- end Modal dialog -->
+
+            </div>
+            <!-- end:: Modal - Confirm delete -->
+            <!--end::Modals-->
+        </div>
+        <!--end::Container-->
+    </div>
+    <!--end::Post-->
+</div>

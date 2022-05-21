@@ -1,0 +1,74 @@
+    <title>Create Employee</title>
+
+<div class="container mt-5 w-50">
+    <link rel="shortcut icon" href="/logo/image.png" />
+    <img src="/logo/image.png" width="10" height="170"
+        style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+    <h1 class="my-3 text-center">Create New Menu</h1>
+    <center><%- include('partials/messages') %></center>
+        <form action="/create/menu" method="POST" enctype="multipart/form-data">
+            <div class="container px-0">
+                <div class="row" >
+                    <div class="fv-row mb-7">
+                        <label class="form-label fw-bolder text-dark fs-6">Picture</label>
+                            <div class="col-sm">
+                                <input type="file" name="avatar" class="form-control" placeholder="Enter a food picture">
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="fv-row mb-7">
+                <label class="form-label fw-bolder text-dark fs-6">Name</label>
+                <input class="form-control " type="text" placeholder="" name="name" autocomplete="off" />
+            </div>
+            <div class="fv-row mb-7">
+                <label class="form-label fw-bolder text-dark fs-6">Descritption</label>
+                <input class="form-control " type="text" placeholder="" name="description" autocomplete="off" />
+            </div>
+            <div class="fv-row mb-7">
+                <label class="form-label fw-bolder text-dark fs-6">Price</label>
+                <input class="form-control " type="text" placeholder="" name="price" autocomplete="off" inputmode="numeric" />
+            </div>
+            <div class="fv-row mb-7">
+                <label class="form-label fw-bolder text-dark fs-6">Time</label>
+                    <select name="time" class="form-control" >
+                        <option value=""></option>
+                        <option value="10 min">10 minutes</option>
+                        <option value="15 min">15 minutes</option>
+                        <option value="20 min">20 minutes</option>
+                        <option value="30 min">30 minutes</option>
+                        <option value="45 min">45 minutes</option>
+                        <option value="1h">1 heure</option>
+                        <option value="2h">2 heures</option>
+                        <option value="4h">3 heures</option>
+                        <option value="4h">4 heures</option>
+                        <option value="5h">5 heures</option>
+                    </select>
+            </div>
+            <div class="fv-row mb-7">
+                <label class="form-label fw-bolder text-dark fs-6">Quality</label>
+                    <select name="quality" class="form-control">
+                        <option value=""></option>
+                        <option value="Food">Food</option>
+                        <option value="Drink">Drink</option>
+                    </select>
+            </div>        
+            <div class="fv-row mb-7">
+                <label class="form-label fw-bolder text-dark fs-6">Type Menu</label>
+            <select name="type" class="form-control">
+                <option value=""></option>
+                <option value="Coffee Menu">Coffee Menu</option>
+                <option value="Starter Dish Menu">Starter Dish Menu</option>
+                <option value="Main Course Menu">Main Course Menu</option>
+                <option value="Dessert Menu">Dessert Menu</option>
+                <option value="Fast-food Menu">Fast-food Menu</option>
+                <option value="Drink Menu">Drink Menu</option>
+            </select>
+            </div><br>
+            <div class="text-center">
+                <button type="submit" class="btn btn-lg btn-primary">
+                        Submit
+                    </button>
+            </div>
+        </form>
+</div>
